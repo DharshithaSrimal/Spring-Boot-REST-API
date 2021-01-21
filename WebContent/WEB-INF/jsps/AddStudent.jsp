@@ -7,48 +7,79 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Student</title>
 </head>
 <body>
-	<h1 align="center">List Students</h1>
-	<button
-		onclick="window.location.href = 'showFormForAdd'; return false;">Add
-		Student</button>
+	<h1>Provide Student Information</h1>
 
 	<hr />
 
-	<center>
-		<table border="1">
+	<form:form action="saveProcess.html" modelAttribute="student">
+		<table>
+			<form:hidden path="id" />
+			<form:hidden path="" value="${student.hobbies}" id="hobbies" />
 			<tr>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Gender</th>
-				<th>Hobbies</th>
-				<th>City</th>
-				<th>Address</th>
-				<th>Action</th>
+				<td><b>Full Name:</b></td>
+				<td><form:input path="name" /></td>
 			</tr>
-			<c:forEach items="${studentsList}" var="s">
-				<c:url var="updateLink" value="/student/displayUpdateForm.html">
-					<c:param name="studentId" value="${s.id}" />
-				</c:url>
-
-				<c:url var="deleteLink" value="/student/displayDeleteForm.html">
-					<c:param name="studentId" value="${s.id}" />
-				</c:url>
-				<tr>
-					<td>${s.name}</td>
-					<td>${s.email}</td>
-					<td>${s.gender}</td>
-					<td>${s.hobbies}</td>
-					<td>${s.city}</td>
-					<td>${s.address}</td>
-					<td><a href="${updateLink}">Update</a> | <a
-						href="${deleteLink}"
-						onclick="if(!(confirm('Are you sure want to delete this Student permanently?'))) return false">Delete</a></td>
-				</tr>
-			</c:forEach>
+			<tr>
+				<td><b>Email:</b></td>
+				<td><form:input path="email" /></td>
+			</tr>
+			<tr>
+				<td><b>Gender:</b></td>
+				<td><form:radiobutton path="gender" value="Male" />Male&nbsp;&nbsp;<form:radiobutton
+						path="gender" value="Female" />Female</td>
+			</tr>
+			<tr>
+				<td><b>Hobbies:</b></td>
+				<td><form:checkbox path="hobbies" value="Cricket" />Cricket <form:checkbox
+						path="hobbies" value="Football" />Football <form:checkbox
+						path="hobbies" value="Volleyball" />Volleyball <form:checkbox
+						path="hobbies" value="Hockey" />Hockey</td>
+			</tr>
+			<tr>
+				<td><b>City:</b></td>
+				<td><form:select path="city">
+						<form:option value="0">--Select--</form:option>
+						<form:option value="Banglore">Banglore</form:option>
+						<form:option value="Hubli">Hubli</form:option>
+						<form:option value="Davangere">Davangere</form:option>
+						<form:option value="Mysore">Mysore</form:option>
+						<form:option value="Belgaum">Belgaum</form:option>
+						<form:option value="Tumkur">Tumkur</form:option>
+						<form:option value="Chitradurga">Chitradurga</form:option>
+					</form:select></td>
+			</tr>
+			<tr>
+				<td><b>Address:</b></td>
+				<td><form:textarea path="address" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Save" /> <input type="reset"
+					value="Reset" /></td>
+			</tr>
 		</table>
-	</center>
+	</form:form>
+
+	<hr />
+
+	<a href="list">Back to List</a>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var hobbies = $("#hobbies").val().split(",");
+			var $checkboxes = $("input[type=checkbox]");
+			$checkboxes.each(function(idx, element) {
+				if (hobbies.indexOf(element.value) != -1) {
+					element.setAttribute("checked", "checked");
+					$("#hobbies").val("");
+				} else {
+					element.removeAttribute("checked");
+				}
+			});
+		});
+	</script>
 </body>
 </html>
