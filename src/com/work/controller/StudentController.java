@@ -1,4 +1,4 @@
-package com.bushansirgur.controller;
+package com.work.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
