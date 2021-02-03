@@ -46,4 +46,4 @@ public class StudentController {
 		studentService.removeStudentObj(theId);
 		return "redirect:/student/list";
 	}
-}
+} 
