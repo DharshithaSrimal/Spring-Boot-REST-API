@@ -1,4 +1,4 @@
-package com.bushansirgur.service;
+package com.work.service;
 
 import java.util.List;
 import com.bushansirgur.entity.Student;
