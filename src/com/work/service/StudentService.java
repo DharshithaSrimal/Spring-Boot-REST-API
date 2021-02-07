@@ -3,6 +3,7 @@ package com.work.service;
 import java.util.List;
 import com.bushansirgur.entity.Student;
 
+//Service
 public interface StudentService {
 
 	public void saveStudentObj(Student studentObj);
